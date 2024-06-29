@@ -2,24 +2,58 @@
 const signUpForm = document.getElementById('signupForm');
 const messageDiv = document.getElementById('message');
 
+const usernameErrors = document.getAnimations('UsernameErrors');
+const emailErrors = document.getElementById('emailErrors');
+const passErrors = document.getElementById('passErrors');
+
 signUpForm.addEventListener('submit', function(event) {
   event.preventDefault();
 
-  const password = document.getElementById('password').value;
+  //these declarations are for testing; they must be deleted------------
+  const username = ["u error0", "u error1"];
+  const password = ["p error0", "p error1"];
+  const email = ["e error0", "e error1", "e error2", "e error3"];
+  
+  const errors = [password, username, email];
+  //------------------------------------------------------------------------
+
+  if( errors[1].length != 0 ){    //  => we have some errors for username div
+
+    for(let j=0; j < username.length ; j++){
+      usernameErrors.innerHTML = `${username[j]}<br>`;
+    }
+  }
+
+  if( errors[2].length != 0 ){    //  => we have some errors for email div
+
+    for(let k=0; k < email.length ; k++){
+      emailErrors.innerHTML = `${email[k]}<br>`;
+    }
+  }
+
+  
+  if( errors[0].length != 0 ){    //  => we have some errors for password div
+
+    for(let i=0; i < password.length ; i++){
+      passErrors.innerHTML = `${password[i]}<br>`;
+    }
+  }
+
+  //confirm password
+  const passwrd = document.getElementById('password').value;
   const confirmPassword = document.getElementById('confirmPassword').value;
   const confpassDiv = document.getElementById("confpassDiv");
 
-  if (password !== confirmPassword) {
+  if (passwrd !== confirmPassword) {
     messageDiv.innerText = "Passwords do not match!";
     messageDiv.style.color = 'red';
     confpassDiv.style.border='1px solid red';
   } 
   else {
     // go to Vrify Account    
-
-    window.location.href = 'VerifySent.html';
-    
+    // window.location.href = 'VerifySent.html';   
   }
+
 });
 
 
