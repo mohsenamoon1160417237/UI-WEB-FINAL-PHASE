@@ -155,7 +155,7 @@
     </div>
 
     <div class="row" style=" padding: 1vw;">
-        {% for object in owner_objects %}
+        {% for object in owner_objects.object_list %}
         <div id="ExactElement" class="col-lg-3 col-sm-6 col-12 row  ExactElement"
              style=" display: flex; padding: 2vw; margin-left: 0.1vw; z-index: 0;">
             <input class="file-input" type="hidden" value="{{ object.id }}">
@@ -280,7 +280,8 @@
                             {{ object.file_name }}</h3>
 
                         <!--------Share----------->
-                        <div class="PropertyDetail share" style="border-bottom: 1px solid #A3B2C7; ">
+                        <div class="PropertyDetail share"
+                             style="border-bottom: 1px solid #A3B2C7; display: {% if not object.owner %}none{% endif %};">
 
                             <svg width="30" height="31" viewBox="0 0 30 31" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -332,7 +333,8 @@
                             </div>
                         </a>
                         <!--------Delete----------->
-                        <div class="PropertyDetail delete">
+                        <div class="PropertyDetail delete"
+                             style="display: {% if not object.owner %}none{% endif %};">
                             <svg width="30" height="31" viewBox="0 0 30 31" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <circle opacity="0.1" cx="15" cy="15.0859" r="15" fill="#FF7474"/>
@@ -365,7 +367,7 @@
 <!----------------------------Share List Popup-------------------------------->
 <script src="{% static 'script.js' %}"></script>
 {% if owner_objects.has_other_pages %}
-<div class="pagination">
+<div class="pagination" style="display: flex; justify-content: center">
     {% if owner_objects.has_previous %}
     <a href="?page={{ owner_objects.previous_page_number }}" class="prev">&#171; Previous</a>
     {% else %}
@@ -433,11 +435,11 @@
 
 
 
+
 </style>
 <script>
 
 let popOvers = document.querySelectorAll(".property");
-const ownerObjects = JSON.parse("{{ owners }}");
 let csrfToken = document.cookie.split("csrftoken=")[1].split(";")[0];
 
 for (let i = 0; i < popOvers.length; i++){
@@ -447,23 +449,11 @@ for (let i = 0; i < popOvers.length; i++){
     obj = popOvers[i].getElementsByClassName("OwnerPopClass")[0];
     share = obj.getElementsByClassName("share")[0];
     del = obj.getElementsByClassName("delete")[0];
-    if(ownerObjects[i]){
-        if(obj.style.display == 'none'){
-          obj.style.display='block';
-        }
-        else{
-          obj.style.display='none';
-        }
+    if(obj.style.display == 'none'){
+      obj.style.display='block';
     }
     else{
-        if( obj.style.display == 'none'){
-          obj.style.display='block';
-        }
-        else{
-          obj.style.display='none';
-        }
-        share.remove();
-        del.remove();
+      obj.style.display='none';
     }
   });
 }
@@ -538,6 +528,7 @@ searchBar.addEventListener("change", () => {
         window.location.href = "http://127.0.0.1:8000/?query=" + searchValue;
     }, 1000);
 });
+
 
 
 </script>

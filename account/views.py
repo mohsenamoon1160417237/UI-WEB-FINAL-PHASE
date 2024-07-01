@@ -56,10 +56,8 @@ def home(request):
                                                     'id': user_obj.id,
                                                     'extension': user_obj.file_name.split(".")[-1]}
         total_size = sum([x.get('file_size') for x in user_objs.values()])
-        owners = json.dumps([x.get('owner') for x in user_objs.values()])
-
         page = request.GET.get('page', 1)
-        paginator = Paginator(list(user_objs.values()), 24)
+        paginator = Paginator(list(user_objs.values()), 8)
         try:
             user_objs = paginator.page(page)
         except PageNotAnInteger:
@@ -70,8 +68,7 @@ def home(request):
         people = MyUser.objects.exclude(id=request.user.id)
 
         return render(request, 'Dashboard.html',
-                      {'owner_objects': user_objs.object_list,
-                       'owners': owners,
+                      {'owner_objects': user_objs,
                        'people': people,
                        'total_size': total_size})
 
