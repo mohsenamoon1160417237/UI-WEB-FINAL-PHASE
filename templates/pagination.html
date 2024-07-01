@@ -1,0 +1,55 @@
+{% if owner_objects.has_other_pages %}
+<div class="pagination">
+    {% if owner_objects.has_previous %}
+    <a href="?page={{ users.previous_page_number }}" class="prev">&#171; Previous</a>
+    {% else %}
+    <a href="" class="disabled">&#171; Previous</a>
+    {% endif %}
+    {% for i in owner_objects.paginator.page_range %}
+    {% if owner_objects.number == i %}
+    <a href="#" class="active">{{ i }}</a>
+    {% else %}
+    <a href="?page={{ i }}">{{ i }}</a>
+    {% endif %}
+    {% if owner_objects.has_next %}
+    <a href="?page={{ users.next_page_number }}" class="next">Next &#187;</a>
+    {% else %}
+    <a href="" class="disabled">Next &#187;</a>
+    {% endif %}
+</div>
+{% endif %}
+
+<style>
+  .pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+.pagination a.prev,
+.pagination a.next {
+  background-color: #f1f1f1;
+}
+
+.pagination a.prev:hover,
+.pagination a.next:hover {
+  background-color: #ddd;
+}
+
+
+</style>

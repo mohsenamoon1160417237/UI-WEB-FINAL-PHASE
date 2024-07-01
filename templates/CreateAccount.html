@@ -1,0 +1,164 @@
+{% extends 'Base.html' %}
+{% load static %}
+
+{% block title_of_page %}
+Create Account
+{% endblock %}
+
+{% block content %}
+
+<!--------------Right Part   (Do not delete!)------------->
+
+<div style="margin: 0;">
+
+    <div style="margin-top: 5vw; margin-left: 14vw; margin-right: 5vw; box-sizing: border-box;">
+
+        <h1 class="headerTxt" style="color: black;max-block-size: 3vw;">Create Account</h1>
+        <br><br>
+
+        <form id="signupForm">
+
+            <div class="fieldDiv">
+
+                <label for="username" class="smallTxt  fieldLable">Username</label>
+                <input type="text" id="username" name="username" class="smallTxt field"
+                       placeholder="Enter your Username" required><br>
+
+            </div>
+            <div id="UsernameErrors" class="smallTxt"
+                 style="color: red; margin-top: 0.5vw; margin-left: 1vw;"></div>
+
+            <br>
+
+            <div class="fieldDiv" style=" margin-top: 1vw; ">
+
+                <label for="email" class="smallTxt  fieldLable">Email</label>
+                <input type="email" id="email" name="email" class="smallTxt field "
+                       placeholder="Enter your Email" required><br>
+
+            </div>
+            <div id="emailErrors" class="smallTxt" style="color: red; margin-top: 0.5vw; margin-left: 1vw;"></div>
+
+            <br>
+
+            <div id="passDiv" class="fieldDiv" style=" margin-top: 1vw; ">
+
+                <label for="password" class="smallTxt  fieldLable">Password</label>
+                <input type="password" id="password" name="password" class="smallTxt field "
+                       placeholder="Enter your Password" required><br>
+
+            </div>
+            <div id="passErrors" class="smallTxt" style="color: red; margin-top: 0.5vw; margin-left: 1vw;"></div>
+
+            <br>
+
+            <div id="confpassDiv" class="fieldDiv" style="margin-top: 1vw; ">
+
+                <label for="confirmPassword" class="smallTxt  fieldLable">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" class="smallTxt field "
+                       placeholder="Confirm Password" required><br>
+
+            </div>
+
+            <div id="message" class="smallTxt" style="margin-top: 0.5vw; margin-left: 1vw;"></div>
+
+            <input id="submitBtn" type="submit" value="Create Account" class="smallTxt  blueBtn"
+                   onmouseover="this.style.color='#1C4E8E'" onmouseout="this.style.color='white'">
+
+
+        </form>
+
+        <br>
+
+        <!-----Login Button----->
+        <div class="row">
+            <p class="col-3"></p>
+            <h6 class="col-8  smallTxt">Already have an account?<a href="http://127.0.0.1:8000/login/" class="smallTxt"
+                                                                   style="color: rgba(114, 136, 250, 1); text-decoration: none;">&nbsp;Login</a>
+            </h6>
+            <p class="col-1"></p>
+        </div>
+
+
+    </div>
+
+</div>
+<script type="text/javascript" src="{% static 'script.js' %}"></script>
+<script>
+let errors = JSON.parse("{{ errors }}");
+const usernameErrors = document.getElementById('UsernameErrors');
+const emailErrors = document.getElementById('emailErrors');
+const passErrors = document.getElementById('passErrors');
+
+if("username" in errors){    //  => we have some errors for username div
+        console.log("user name in errors");
+        for(let j=0; j < errors.username.length ; j++){
+          usernameErrors.innerHTML = `${errors.username[j]}<br>`;
+        }
+  }
+
+  if("email" in errors){    //  => we have some errors for email div
+    console.log("errors in errors");
+    for(let k=0; k < errors.email.length ; k++){
+      emailErrors.innerHTML = `${errors.email[k]}<br>`;
+    }
+  }
+
+  if("password" in errors){    //  => we have some errors for password div
+    console.log("password in errors");
+    for(let i=0; i < errors.password.length ; i++){
+      passErrors.innerHTML = `${errors.password[i]}<br>`;
+    }
+  }
+const signUpForm = document.getElementById('signupForm');
+const messageDiv = document.getElementById('message');
+let csrfToken = document.cookie.split("csrftoken=")[1].split(";")[0];
+  signUpForm.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+  const confpassDiv = document.getElementById("confpassDiv");
+
+  if (password !== confirmPassword) {
+    messageDiv.innerText = "Passwords do not match!";
+    messageDiv.style.color = 'red';
+    confpassDiv.style.border='1px solid red';
+  }
+  else {
+    var username = document.querySelector("#username").value;
+    var email = document.querySelector("#email").value;
+    var confirm_password = document.querySelector("#confirmPassword").value;
+
+    const data = {
+      username: username,
+      email: email,
+      password: password,
+      confirm_password: confirm_password
+    };
+
+    const jsonData = JSON.stringify(data);
+    const xhr = new XMLHttpRequest();
+
+    xhr.open('POST', 'http://127.0.0.1:8000/register/');
+
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('X-CSRFToken', csrfToken);
+
+    xhr.send(jsonData);
+
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+          // The request was successful
+        console.log('Data sent successfully');
+        window.location.href = "http://127.0.0.1:8000/sent/";
+      } else {
+          // The request failed
+        console.error('Error sending data');
+      }
+    };
+  }
+});
+
+</script>
+{% endblock %}
