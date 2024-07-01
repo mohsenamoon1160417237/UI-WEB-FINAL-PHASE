@@ -192,7 +192,7 @@ let searchBar = document.getElementById("search");
 searchBar.addEventListener("change", () => {
     setTimeout(function() {
         let searchValue = searchBar.value;
-        window.location.href = "http://127.0.0.1:8000/share/1/?query=" + searchValue;
+        window.location.href = "http://127.0.0.1:8000/share/" + window.location.href.split("/")[4] + "/?query=" + searchValue;
     }, 1000);
 });
 
