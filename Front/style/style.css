@@ -25,7 +25,7 @@
     cursor: pointer;
     background-color: rgba(114, 136, 250, 1);
     color:white; 
-    border-radius: 2vw; 
+    border-radius: 30PX; 
     border: none; 
     box-shadow: 0vw 0.2vw 0.2vw 0.2vw rgb(184, 186, 202); 
     margin-top: 3vw ;
@@ -127,13 +127,13 @@
     background-color: white; 
     border: 1px solid rgb(236, 233, 233); 
     border-radius: 3vw; 
-    width: 40vw; 
-    height: 45vw; 
-    z-index: 999; 
-    position: absolute; 
+    width: 35vw; 
+    height: 55vw; 
+    z-index: 999;  
     min-width: 280px; 
-    min-height: 580px; 
-    top: 7vw; 
+    min-height: 560px; 
+    margin-top: 5vw; 
+    margin-bottom: 5vw;
     box-shadow:10vw 3vw 10vw 20vw #5968B20F; 
     padding: 2.5vw; 
     overflow: clip;
@@ -158,12 +158,13 @@
     height: 1.5vw; 
     min-height: 15px; 
     min-width: 15px; 
-    position:relative; 
-    top: 3vw;
+    position: absolute; 
+
+    margin-top: 1.5vw;
 }
 
 .PersonSvg{
-    position:relative; 
+    position: relative; 
     top: 2vw; 
-    left: 1.5vw; 
+    left: 3.2vw; 
 }
