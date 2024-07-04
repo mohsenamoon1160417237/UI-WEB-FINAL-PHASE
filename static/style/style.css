@@ -25,9 +25,9 @@
     cursor: pointer;
     background-color: rgba(114, 136, 250, 1);
     color:white; 
-    border-radius: 2vw; 
-    border: none; 
-    box-shadow: 0vw 0.2vw 0.2vw 0.2vw rgb(184, 186, 202); 
+    border-radius: 30PX;
+    border: none;
+    box-shadow: 0vw 0.2vw 0.2vw 0.2vw rgb(184, 186, 202);
     margin-top: 3vw ;
     padding-bottom: 0.1vw;
 }
@@ -35,49 +35,49 @@
 
 .fieldDiv{
     box-shadow: 0vw 0.3vw 0.3vw 0.3vw rgba(66, 71, 97, 0.153);
-    border-radius: 1vw; 
+    border-radius: 1vw;
     max-height: max-content;
 
 }
 
 .fieldLable{
-    width: 100%; 
+    width: 100%;
     height: 1vw;
     border-radius: 1vw 1vw 0vw 0vw ;
-    padding-left: 1vw; 
+    padding-left: 1vw;
     padding-top: 0.5vw;
     max-height: max-content;
-    
+
 }
 
 .field{
 
     width: 100%;
-    height: 3vw; 
-    border: 1px solid white; 
-    padding-left: 1vw; 
+    height: 3vw;
+    border: 1px solid white;
+    padding-left: 1vw;
     border-radius: 0vw 0vw 1vw 1vw;
     max-height: max-content;
-    
+
 }
 
 .searchContent{
-    border: none; 
-    border-radius: 10vw; 
-    background-color: white; 
-    box-shadow: 0.2vw 0.5vw 1vw 0.5vw #2228480f; 
-    padding: 0.5vw; 
-    height: 3.8vw; 
-    overflow: hidden; 
-    margin-top: 0.5vw; 
+    border: none;
+    border-radius: 10vw;
+    background-color: white;
+    box-shadow: 0.2vw 0.5vw 1vw 0.5vw #2228480f;
+    padding: 0.5vw;
+    height: 3.8vw;
+    overflow: hidden;
+    margin-top: 0.5vw;
     min-height: 30px;
 }
 
 .Elements{
-    
-    background-color: white; 
-    height: 7vw;  
-    border-radius: 1vw; 
+
+    background-color: white;
+    height: 7vw;
+    border-radius: 1vw;
     min-height: 80px;
     padding: 1vw;
     overflow-y: clip;  /* ????*/
@@ -87,38 +87,84 @@
 
 
 .FileIcon{
-    background-color: #F2F4F8; 
-    border: none; 
-    border-radius: 45px; 
-    height: 5vw; 
-    width: 5vw; 
-    min-width: 50px; 
-    min-height: 50px; 
-    position: absolute; 
+    background-color: #F2F4F8;
+    border: none;
+    border-radius: 45px;
+    height: 5vw;
+    width: 5vw;
+    min-width: 50px;
+    min-height: 50px;
+    position: absolute;
     z-index: 3;
 }
 
 .OwnerPopClass{
-    width: 25vw; 
-    height: auto; 
-    border-radius: 10px; 
-    background-color: white; 
+    width: 25vw;
+    height: auto;
+    border-radius: 10px;
+    background-color: white;
     border: 1px solid rgb(241, 235, 235);
-    z-index: 99; 
-    margin-left: -10vw; 
-    min-width: 80px; 
-    max-width: 200px; 
-    padding: 1vw; 
-    position: absolute; 
+    z-index: 99;
+    margin-left: -10vw;
+    min-width: 80px;
+    max-width: 200px;
+    padding: 1vw;
+    position: absolute;
     display: none;
 }
 
 .PropertyDetail{
-    height: 3vw; 
-    width: 100%; 
-    padding: 0.5vw 0px ; 
-    display: flex; 
+    height: 3vw;
+    width: 100%;
+    padding: 0.5vw 0px ;
+    display: flex;
     min-height: 37px;
     cursor: pointer;
 }
 
+
+.ShareDiv{
+    background-color: white;
+    border: 1px solid rgb(236, 233, 233);
+    border-radius: 3vw;
+    width: 35vw;
+    height: 55vw;
+    z-index: 999;
+    min-width: 280px;
+    min-height: 560px;
+    margin-top: 5vw;
+    margin-bottom: 5vw;
+    box-shadow:10vw 3vw 10vw 20vw #5968B20F;
+    padding: 2.5vw;
+    overflow: clip;
+}
+
+.backBtn{
+    background-color: white;
+    box-shadow: 0.2vw 0.5vw 0.5vw 0.2vw #4247611A;
+    border: none;
+    border-radius: 5.5vw;
+    height: 4.5vw;
+    width: 4.5vw;
+    min-width: 30px;
+    min-height: 30px;
+    margin-left: 1vw;
+    border: 1px solid rgba(255, 254, 254, 0.81);
+}
+
+.checkPerson{
+    background-color: rgba(28, 78, 142, 1);
+    width: 1.5vw;
+    height: 1.5vw;
+    min-height: 15px;
+    min-width: 15px;
+    position: absolute;
+
+    margin-top: 1.5vw;
+}
+
+.PersonSvg{
+    position: relative;
+    top: 2vw;
+    left: 3.2vw;
+}
